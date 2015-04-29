@@ -1,6 +1,7 @@
 - clean: ['~']
 
 - link:
+    ~/.gitignore_global: .gitignore_global
     ~/.inputrc: .inputrc
     ~/.tmux.conf: .tmux.conf
     ~/.vimrc: .vimrc
