@@ -1,11 +1,13 @@
 - clean: ['~']
 
 - link:
+    ~/.gitconfig: .gitconfig
     ~/.gitignore_global: .gitignore_global
     ~/.inputrc: .inputrc
     ~/.tmux.conf: .tmux.conf
     ~/.vimrc: .vimrc
     ~/.zshrc: .zshrc
+    ~/bin: bin
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
