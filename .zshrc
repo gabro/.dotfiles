@@ -32,7 +32,7 @@ ZSH_THEME="gabro"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git osx brew sublime hophop heroku grunt)
+plugins=(git osx brew sublime hophop hub npm zsh-syntax-highlighting)
 
 setopt vi
 source $ZSH/oh-my-zsh.sh
@@ -63,7 +63,7 @@ export PATH="/usr/local/heroku/bin:$PATH"
 export PATH="$PATH:/usr/local/smlnj-110.75/bin"
 
 ### NPM
-export PATH="$PATH:/usr/local/share/npm/bin"
+export PATH="$PATH:/usr/local/bin"
 
 ### Mine
 export PATH=~/bin:$PATH
@@ -84,3 +84,12 @@ PATH=~/Library/Haskell/bin:$PATH
 source $(brew --prefix nvm)/nvm.sh
 
 alias sqlplus="DYLD_LIBRARY_PATH='/Users/gabro/Downloads/oracle/' rlwrap /Users/gabro/Downloads/oracle/sqlplus"
+
+### nvbn/thefuck
+alias fuck='$(thefuck $(fc -ln -1))'
+
+### alias git to hub
+eval "$(hub alias -s)"
+
+### git new-workdir
+PATH=$PATH:/usr/local/share/git-core/contrib/workdir

@@ -37,6 +37,10 @@ Bundle 'djoshea/vim-autoread'
 Bundle 'majutsushi/tagbar'
 Bundle 'vim-scripts/taglist.vim'
 Bundle 'jiangmiao/auto-pairs'
+Bundle 'msanders/cocoa.vim'
+Bundle 'Rip-Rip/clang_complete'
+Bundle 'kballard/vim-swift'
+Bundle 'jpalardy/vim-slime'
 
 call vundle#end()
 filetype plugin indent on
@@ -130,3 +134,6 @@ nmap <F8> :TagbarToggle<CR>
 
 " jump to ctag in a vertical split with alt + ]
 map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
+
+" vim-slime configuration
+let g:slime_target = "tmux"
