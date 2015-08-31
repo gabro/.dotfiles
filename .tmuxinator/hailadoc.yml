@@ -1,0 +1,11 @@
+# ~/.tmuxinator/hailadoc.yml
+
+name: hailadoc
+root: ~/buildo/hailadoc
+
+pre: git pull --ff-only
+
+windows:
+  - ios: cd ios
+  - web: cd web
+  - api: cd api
