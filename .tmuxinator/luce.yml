@@ -1,0 +1,9 @@
+# ~/.tmuxinator/luce.yml
+
+name: luce
+root: ~/buildo/luce
+
+pre: git pull --ff-only
+
+windows:
+  - ios: cd ios

@@ -1,0 +1,13 @@
+# ~/.tmuxinator/hophop.yml
+
+name: hophop
+root: ~/buildo/infra/hophop
+
+pre: git pull --ff-only
+
+windows:
+  - hophop:
+      layout: main-vertical
+      panes:
+        -
+        - vim

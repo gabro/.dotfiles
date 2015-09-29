@@ -10,7 +10,7 @@ windows:
         - amm
         - editor:
           - vim
-          - ':SlimeSend' # launch slime send
-          - ''           # default
-          - '0.0'        # window 0, pane 0
+          - ':SlimeConfig' # configure vim-slime
+          - ''             # default
+          - '0.0'          # window 0, pane 0
           - ':set syntax=scala'

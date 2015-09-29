@@ -1,0 +1,9 @@
+# ~/.tmuxinator/scala-meta.yml
+
+name: scala-meta
+root: ~/
+
+windows:
+  - editor:
+      panes:
+        vim

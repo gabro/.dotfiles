@@ -1,0 +1,13 @@
+# ~/.tmuxinator/ipercron.yml
+
+name: ipercron
+root: ~/buildo/ipercron
+
+pre: git pull --ff-only
+
+windows:
+  - web:
+      layout: main-vertical
+      panes:
+        - vim
+        - npm
