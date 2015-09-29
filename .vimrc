@@ -137,3 +137,6 @@ map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 
 " vim-slime configuration
 let g:slime_target = "tmux"
+
+" eslint syntax check for javascript files
+let g:syntastic_javascript_checkers = ['eslint']
