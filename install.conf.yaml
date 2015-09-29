@@ -1,6 +1,7 @@
 - clean: ['~']
 
 - link:
+    ~/.gitattributes: .gitattributes
     ~/.gitconfig: .gitconfig
     ~/.gitignore_global: .gitignore_global
     ~/.inputrc: .inputrc
