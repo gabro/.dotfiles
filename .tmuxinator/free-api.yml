@@ -1,0 +1,7 @@
+# ~/.tmuxinator/free-api.yml
+
+name: free-api
+root: ~/buildo/experiments/free-consultations
+
+windows:
+  - free:
