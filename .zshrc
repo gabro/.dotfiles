@@ -30,3 +30,7 @@ eval "$(hub alias -s)"
 
 ### git new-workdir
 PATH=$PATH:/usr/local/share/git-core/contrib/workdir
+
+bindkey '\e[A' history-search-backward
+bindkey '\e[B' history-search-forward
+bindkey "^R" history-incremental-search-backward
