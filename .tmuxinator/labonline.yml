@@ -8,3 +8,5 @@ pre: git pull --ff-only
 windows:
   - web:
     layout: main-vertical
+  - escalapio:
+    layout: main-vertical
