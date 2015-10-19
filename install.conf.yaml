@@ -10,6 +10,7 @@
     ~/.zshrc: .zshrc
     ~/bin: bin
     ~/.tmuxinator: .tmuxinator
+    ~/.vim-snippets: .vim-snippets
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]

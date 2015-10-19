@@ -41,6 +41,8 @@ Bundle 'msanders/cocoa.vim'
 Bundle 'Rip-Rip/clang_complete'
 Bundle 'kballard/vim-swift'
 Bundle 'jpalardy/vim-slime'
+Bundle 'Shougo/neosnippet'
+Bundle 'Shougo/neosnippet-snippets'
 
 call vundle#end()
 filetype plugin indent on
@@ -111,6 +113,7 @@ set backspace=2
 nnoremap <space> @q
 
 let g:neocomplete#enable_at_startup = 1
+let g:neocomplete#enable_auto_select = 1
 
 set wildignore+=*.swp,*.class,*.jar
 
@@ -140,3 +143,20 @@ let g:slime_target = "tmux"
 
 " eslint syntax check for javascript files
 let g:syntastic_javascript_checkers = ['eslint']
+
+" NeoSnippet configuration
+" activate snippet or jump to next argument using TAB
+imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+ \ "\<Plug>(neosnippet_expand_or_jump)"
+ \: pumvisible() ? "\<C-n>" : "\<TAB>"
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+ \ "\<Plug>(neosnippet_expand_or_jump)"
+ \: "\<TAB>"
+
+" conceal markers
+if has('conceal')
+  set conceallevel=2 concealcursor=niv
+endif
+
+" custom snippets
+let g:neosnippet#snippets_directory="~/.vim-snippets"
