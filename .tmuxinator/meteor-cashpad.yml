@@ -1,0 +1,10 @@
+# ~/.tmuxinator/meteor-cashpad.yml
+
+name: meteor-cashpad
+root: ~/buildo/meteor-cashpad
+
+windows:
+  - editor:
+      panes:
+        -
+        - vim

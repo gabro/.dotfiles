@@ -1,0 +1,18 @@
+snippet pures
+abbr revenge pure skinnable component
+options head
+    import React from 'react';
+    import { props, pure, skinnable } from 'revenge';
+
+    @skinnable()
+    @pure
+    @props(${1:{}})
+    export default class ${2:`substitute(bufname('%') ==#'[Command Line]' ? expand('#:t:r:r:r') : expand('%:t:r:r:r'), '\%(^\(.\)\|_\(.\)\)', '\u\1\u\2', 'g')`} extends React.Component {
+      getLocals() {
+        return {};
+      }
+
+      template(locals) {
+        return ${0:TARGET:<div />};
+      }
+    }

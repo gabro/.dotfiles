@@ -34,3 +34,25 @@ PATH=$PATH:/usr/local/share/git-core/contrib/workdir
 bindkey '\e[A' history-search-backward
 bindkey '\e[B' history-search-forward
 bindkey "^R" history-incremental-search-backward
+
+export NVM_DIR="/usr/local/opt/nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+
+# sqlplus configuration
+export DYLD_LIBRARY_PATH=/opt/oracle/instantclient_11_2:$DYLD_LIBRARY_PATH
+export PATH=/opt/oracle/instantclient_11_2:$PATH
+
+# android
+export ANDROID_HOME=/usr/local/opt/android-sdk
+
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+
+# notify me when a commands finishes and terminal is in background
+function f_notifybg {
+  LAST_EXIT_CODE=$?
+  CMD=$(fc -ln -1)
+  # No point in waiting for the command to complete
+  notifybg "$CMD" "$LAST_EXIT_CODE" &
+}
+
+export PS1='$(f_notifybg)'$PS1

@@ -23,3 +23,7 @@
 	required = true
 [diff "scala"]
   xfuncname = "^\\s*(.*(def|object|class|trait) .*)$"
+[http]
+	sslverify = true
+[commit]
+	gpgsign = true

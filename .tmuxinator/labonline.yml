@@ -6,7 +6,7 @@ root: ~/buildo/labonline
 pre: git pull --ff-only
 
 windows:
-  - web:
+  - web: cd web; clear
     layout: main-vertical
-  - escalapio:
+  - escalapio: cd escalapio; clear
     layout: main-vertical

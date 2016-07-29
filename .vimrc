@@ -26,7 +26,6 @@ Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-commentary'
 Bundle 'scrooloose/syntastic'
 Bundle 'vim-scripts/greplace.vim'
-Bundle 'burnettk/vim-angular'
 Bundle 'pangloss/vim-javascript'
 Bundle 'scrooloose/nerdtree'
 Bundle 'idris-hackers/idris-vim'
@@ -43,11 +42,12 @@ Bundle 'kballard/vim-swift'
 Bundle 'jpalardy/vim-slime'
 Bundle 'Shougo/neosnippet'
 Bundle 'Shougo/neosnippet-snippets'
+Bundle 'rking/ag.vim'
+Bundle 'joshdick/onedark.vim'
 
 call vundle#end()
 filetype plugin indent on
 
-syntax on
 set softtabstop=2
 set shiftwidth=2
 set autoindent
@@ -79,6 +79,7 @@ if &term =~ '^screen'
   set ttymouse=xterm2
 endif
 
+syntax on
 colorscheme lucius
 let g:lucius_no_term_bg = 1
 LuciusBlackLowContrast
@@ -160,3 +161,6 @@ endif
 
 " custom snippets
 let g:neosnippet#snippets_directory="~/.vim-snippets"
+
+" ctrlp only current directory
+let g:ctrlp_working_path_mode = 'a'
