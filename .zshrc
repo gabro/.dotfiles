@@ -35,9 +35,6 @@ bindkey '\e[A' history-search-backward
 bindkey '\e[B' history-search-forward
 bindkey "^R" history-incremental-search-backward
 
-export NVM_DIR="/usr/local/opt/nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-
 # sqlplus configuration
 export DYLD_LIBRARY_PATH=/opt/oracle/instantclient_11_2:$DYLD_LIBRARY_PATH
 export PATH=/opt/oracle/instantclient_11_2:$PATH
@@ -56,3 +53,10 @@ function f_notifybg {
 }
 
 export PS1='$(f_notifybg)'$PS1
+
+export TERM='xterm-256color'
+
+export NVM_DIR="/Users/gabro/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+
+export alias sbt=sbt|tee -a ~/.sbt_usage

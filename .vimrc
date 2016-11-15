@@ -7,43 +7,69 @@ filetype off
 set rtp+=~/.vim/bundle/vundle
 call vundle#begin()
 
-Bundle 'gmarik/vundle'
-Bundle 'derekwyatt/vim-scala'
-Bundle 'repos-scala/scala-vundle'
-Bundle 'christoomey/vim-tmux-navigator'
-Bundle 'jonathanfilip/vim-lucius'
-Bundle 'kien/ctrlp.vim'
-Bundle 'bling/vim-airline'
-Bundle 'tpope/vim-vinegar'
-Bundle 'airblade/vim-gitgutter'
-Bundle 'terryma/vim-multiple-cursors'
-Bundle 'tpope/vim-fugitive'
-Bundle 'bronson/vim-trailing-whitespace'
-Bundle 'Shougo/neocomplete.vim'
-Bundle 'digitaltoad/vim-jade'
-Bundle 'kchmck/vim-coffee-script'
-Bundle 'tpope/vim-surround'
-Bundle 'tpope/vim-commentary'
-Bundle 'scrooloose/syntastic'
-Bundle 'vim-scripts/greplace.vim'
-Bundle 'pangloss/vim-javascript'
-Bundle 'scrooloose/nerdtree'
-Bundle 'idris-hackers/idris-vim'
-Bundle 'mxw/vim-jsx'
-Bundle 'Lokaltog/vim-easymotion'
-Bundle 'rompetroll/vim-scalariform'
-Bundle 'djoshea/vim-autoread'
-Bundle 'majutsushi/tagbar'
-Bundle 'vim-scripts/taglist.vim'
-Bundle 'jiangmiao/auto-pairs'
-Bundle 'msanders/cocoa.vim'
-Bundle 'Rip-Rip/clang_complete'
-Bundle 'kballard/vim-swift'
-Bundle 'jpalardy/vim-slime'
-Bundle 'Shougo/neosnippet'
-Bundle 'Shougo/neosnippet-snippets'
-Bundle 'rking/ag.vim'
-Bundle 'joshdick/onedark.vim'
+" the plugin manager
+Plugin 'gmarik/vundle'
+
+" scala support
+Plugin 'derekwyatt/vim-scala'
+Plugin 'repos-scala/scala-vundle'
+Plugin 'ensime/ensime-vim'
+
+" navigate seamlessly between vim and tmux panes
+Plugin 'christoomey/vim-tmux-navigator'
+
+" theme
+Plugin 'jonathanfilip/vim-lucius'
+
+" fuzzy file finder
+Plugin 'kien/ctrlp.vim'
+
+" a nice status bar
+Plugin 'bling/vim-airline'
+
+" git support
+Plugin 'airblade/vim-gitgutter'
+Plugin 'tpope/vim-fugitive'
+
+" make trailing whitespaces stand-out
+Plugin 'bronson/vim-trailing-whitespace'
+
+" fuzzy autocompletion support
+Plugin 'Shougo/neocomplete.vim'
+
+" surround things (parenthesis and friends)
+Plugin 'tpope/vim-surround'
+
+" comment with gc/gcc
+Plugin 'tpope/vim-commentary'
+
+" inline linting for multiple languages
+Plugin 'scrooloose/syntastic'
+
+" javascript/jsx support
+Plugin 'pangloss/vim-javascript'
+Plugin 'mxw/vim-jsx'
+
+" nicer project drawer
+Plugin 'scrooloose/nerdtree'
+
+" autoreload buffers when files change on disk
+Plugin 'djoshea/vim-autoread'
+
+" automatically close parenthesis
+Plugin 'jiangmiao/auto-pairs'
+
+" copy buffer from vim to tmux
+Plugin 'jpalardy/vim-slime'
+
+" find stuff in files
+Plugin 'rking/ag.vim'
+
+" terraform files syntax
+Plugin 'hashivim/vim-terraform'
+
+" flowtype support
+Plugin 'flowtype/vim-flow'
 
 call vundle#end()
 filetype plugin indent on
@@ -73,11 +99,12 @@ set smartcase
 set hlsearch
 
 " enable mouse
-set mouse+=a
-if &term =~ '^screen'
-  " tmux knows the extended mouse mode
-  set ttymouse=xterm2
-endif
+set mouse=a
+if has("mouse_sgr")
+    set ttymouse=sgr
+else
+    set ttymouse=xterm2
+end
 
 syntax on
 colorscheme lucius
@@ -126,9 +153,15 @@ let g:jsx_ext_required=0
 
 " 120 char delimiter on .scala files
 autocmd FileType scala set cc=121
+" Enable heavy omni completion.
+if !exists('g:neocomplete#force_omni_input_patterns')
+  let g:neocomplete#force_omni_input_patterns = {}
+endif
+let g:neocomplete#force_omni_input_patterns.java = '\k\.\k*'
+let g:neocomplete#force_omni_input_patterns.scala = '\k\.\k*'
 
-" enable ctags
-set tags=./.tags,.tags,./tags,tags
+" typecheck on save
+autocmd BufWritePost *.scala :EnTypeCheck
 
 " nerdtree toggle
 nmap <F9> :NERDTreeToggle<CR>
@@ -145,22 +178,13 @@ let g:slime_target = "tmux"
 " eslint syntax check for javascript files
 let g:syntastic_javascript_checkers = ['eslint']
 
-" NeoSnippet configuration
-" activate snippet or jump to next argument using TAB
-imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
- \ "\<Plug>(neosnippet_expand_or_jump)"
- \: pumvisible() ? "\<C-n>" : "\<TAB>"
-smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
- \ "\<Plug>(neosnippet_expand_or_jump)"
- \: "\<TAB>"
-
 " conceal markers
 if has('conceal')
   set conceallevel=2 concealcursor=niv
 endif
 
-" custom snippets
-let g:neosnippet#snippets_directory="~/.vim-snippets"
-
 " ctrlp only current directory
 let g:ctrlp_working_path_mode = 'a'
+
+" autoclose Flow error panel when no errors are found
+let g:flow#autoclose = 1

@@ -1,6 +1,7 @@
 [user]
 	email = gabriele@buildo.io
 	name = Gabriele Petronella
+  signingkey = B5900161
 [core]
 	excludesfile = ~/.gitignore_global
   attributesfile = ~/.gitattributes
@@ -11,7 +12,6 @@
 	default = simple
 [alias]
 	last = log -1 HEAD
-	fammiunasega = !sh fammiunasega.sh
   clean-branches = !git branch --merged master | grep -v '\\* master' | xargs -n 1 git branch -d
 [merge]
 	tool = vimdiff

@@ -6,6 +6,7 @@
     ~/.gitignore_global: .gitignore_global
     ~/.inputrc: .inputrc
     ~/.tmux.conf: .tmux.conf
+    ~/.tmux.conf.local: .tmux.conf.local
     ~/.vimrc: .vimrc
     ~/.zshrc: .zshrc
     ~/bin: bin
