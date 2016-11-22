@@ -153,6 +153,10 @@ let g:jsx_ext_required=0
 
 " 120 char delimiter on .scala files
 autocmd FileType scala set cc=121
+
+" 100 char delimiter on .java files
+autocmd FileType java set cc=101
+
 " Enable heavy omni completion.
 if !exists('g:neocomplete#force_omni_input_patterns')
   let g:neocomplete#force_omni_input_patterns = {}
