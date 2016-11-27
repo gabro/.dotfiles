@@ -19,7 +19,7 @@ Plugin 'ensime/ensime-vim'
 Plugin 'christoomey/vim-tmux-navigator'
 
 " theme
-Plugin 'jonathanfilip/vim-lucius'
+Plugin 'joshdick/onedark.vim'
 
 " fuzzy file finder
 Plugin 'kien/ctrlp.vim'
@@ -107,11 +107,7 @@ else
 end
 
 syntax on
-colorscheme lucius
-let g:lucius_no_term_bg = 1
-LuciusBlackLowContrast
-set guifont=Inconsolata\ 9
-highlight LineNr ctermfg=grey ctermbg=black
+colorscheme onedark
 
 " slim cursor for insert mode
 " block cursor for normal mode
