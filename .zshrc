@@ -1,6 +1,7 @@
 source $(brew --prefix)/share/antigen/antigen.zsh
 
 antigen use oh-my-zsh
+
 antigen bundle mafredri/zsh-async
 antigen bundle sindresorhus/pure
 antigen bundle zsh-users/zsh-syntax-highlighting
@@ -19,8 +20,8 @@ prompt pure
 setopt vi
 
 export LANG=en_US.UTF-8
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=240'
 
-# Customize to your needs...
 path=(
   $path
   /opt/local/bin
@@ -36,6 +37,8 @@ path=(
 
 export EDITOR=vim
 
+alias v=vim
+
 alias ll='ls -lh'
 alias l='ls -lah'
 
@@ -44,7 +47,6 @@ alias gds='git diff --staged --color-words'
 alias lg='git log --graph --full-history --all --color --pretty=format:"%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s%x20%C(yellow)(%an, %C(white)%ar)"'
 alias gw='git-working-history'
 
-### alias git to hub
 eval "$(hub alias -s)"
 
 bindkey -v

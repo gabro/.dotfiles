@@ -12,7 +12,6 @@
     ~/bin: bin
     ~/.tmuxinator: .tmuxinator
     ~/.vim-snippets: .vim-snippets
-    ~/.oh-my-zsh: .oh-my-zsh
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
