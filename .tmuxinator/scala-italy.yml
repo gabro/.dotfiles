@@ -1,8 +1,0 @@
-# ~/.tmuxinator/scala-italy.yml
-
-name: scala-italy
-root: ~/buildo/scala-italy
-
-windows:
-  - editor:
-      - vim

@@ -13,7 +13,6 @@ Plugin 'gmarik/vundle'
 " scala support
 Plugin 'derekwyatt/vim-scala'
 Plugin 'repos-scala/scala-vundle'
-Plugin 'ensime/ensime-vim'
 
 " navigate seamlessly between vim and tmux panes
 Plugin 'christoomey/vim-tmux-navigator'
@@ -43,12 +42,11 @@ Plugin 'tpope/vim-surround'
 " comment with gc/gcc
 Plugin 'tpope/vim-commentary'
 
-" inline linting for multiple languages
-Plugin 'scrooloose/syntastic'
+" async inline linting for multiple languages
+Plugin 'w0rp/ale'
 
 " javascript/jsx support
 Plugin 'pangloss/vim-javascript'
-Plugin 'mxw/vim-jsx'
 
 " nicer project drawer
 Plugin 'scrooloose/nerdtree'
@@ -68,8 +66,8 @@ Plugin 'rking/ag.vim'
 " terraform files syntax
 Plugin 'hashivim/vim-terraform'
 
-" flowtype support
-Plugin 'flowtype/vim-flow'
+" typescript
+Plugin 'leafgarland/typescript-vim'
 
 call vundle#end()
 filetype plugin indent on
@@ -148,7 +146,7 @@ autocmd FileType idris set commentstring=--\ %s
 let g:jsx_ext_required=0
 
 " 120 char delimiter on .scala files
-autocmd FileType scala set cc=121
+autocmd FileType scala set cc=101
 
 " 100 char delimiter on .java files
 autocmd FileType java set cc=101
@@ -160,31 +158,46 @@ endif
 let g:neocomplete#force_omni_input_patterns.java = '\k\.\k*'
 let g:neocomplete#force_omni_input_patterns.scala = '\k\.\k*'
 
-" typecheck on save
-autocmd BufWritePost *.scala :EnTypeCheck
-
 " nerdtree toggle
 nmap <F9> :NERDTreeToggle<CR>
-
-" ctags tab toggle
-nmap <F8> :TagbarToggle<CR>
-
-" jump to ctag in a vertical split with alt + ]
-map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 
 " vim-slime configuration
 let g:slime_target = "tmux"
 
-" eslint syntax check for javascript files
-let g:syntastic_javascript_checkers = ['eslint']
-
-" conceal markers
-if has('conceal')
-  set conceallevel=2 concealcursor=niv
-endif
-
 " ctrlp only current directory
 let g:ctrlp_working_path_mode = 'a'
 
-" autoclose Flow error panel when no errors are found
-let g:flow#autoclose = 1
+" make crontab like vim
+autocmd filetype crontab setlocal nobackup nowritebackup
+
+" support for qualified tags (see https://github.com/pjrt/stags#vim-support-for-qualified-tags)
+function! QualifiedTagJump() abort
+  let l:plain_tag = expand("<cword>")
+  let l:orig_keyword = &iskeyword
+  set iskeyword+=\.
+  let l:word = expand("<cword>")
+  let &iskeyword = l:orig_keyword
+
+  let l:splitted = split(l:word, '\.')
+  let l:acc = []
+  for wo in l:splitted
+    let l:acc = add(l:acc, wo)
+    if wo ==# l:plain_tag
+      break
+    endif
+  endfor
+
+  let l:combined = join(l:acc, ".")
+  try
+    execute "ta " . l:combined
+  catch /.*E426.*/ " Tag not found
+    execute "ta " . l:plain_tag
+  endtry
+endfunction
+
+" nnoremap <silent> <C-]> :<C-u>call QualifiedTagJump()<CR>
+
+" ctrl+\ open ctag in a vertical split
+nnoremap <C-\> :set splitright<CR> :vsp <CR>:<C-u>call QualifiedTagJump()<CR>
+
+set tags=tags;/

@@ -1,7 +1,0 @@
-# ~/.tmuxinator/gpavatarview.yml
-
-name: gpavatarview
-root: ~/buildo/GPAvatarView
-
-windows:
-  - ios

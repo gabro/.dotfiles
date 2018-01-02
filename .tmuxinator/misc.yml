@@ -1,7 +1,0 @@
-# ~/.tmuxinator/misc.yml
-
-name: misc
-root: ~/
-
-windows:
-  - misc:

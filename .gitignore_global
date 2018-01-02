@@ -3,3 +3,4 @@
 .*.sw*
 .ensime*
 secrets.yaml
+.metaserver
